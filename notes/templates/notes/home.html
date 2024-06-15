@@ -1,0 +1,70 @@
+{%extends "notes/base.html" %}
+{% block content %}
+<!-- <div class="content-section" style="margin-left: 20%;">
+    <h1>{{ note.title }}</h1>
+    <hr style="margin-bottom: 5px; margin-top: 10px;">
+    <div class="text-start fw-normal text-muted">
+        <small class="text-muted">{{ note.date_posted|date:"F d, Y" }}<span class="tab"></span>{{ note.date_posted|date:"g:i A" }}</small>
+    </div>
+    <br>
+    <br>
+    <p style="margin-left: 5px; margin-right: 25px;">{{ note.content }}</p>
+</div> -->
+
+
+<div class="row">
+    {% for note in notes %}
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ note.title }}</h5>
+                <p class="card-text">{{ note.content }}</p>
+                <a href="#" class="btn btn-primary">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="flex-shrink-0 p-3 bg-light" style="width: 20%; height: 100vh;">
+
+    <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                quick notes
+            </button>
+            <div class="collapse" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    {% for note in notes %}
+                    <li><a href="{% url 'note-detail' note.id %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">{{ note.title }}</a>
+                    {% endfor %}
+                    </li>
+                    <!-- <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"><strong>+ new note</strong></a></li> -->
+                </ul>
+            </div>
+        </li>
+        <li class="border-top my-3"></li>
+
+    </ul>
+    <div>
+        <a type="button" class="btn btn-light" href="{% url 'note-create' %}">+ new section</a>
+    </div>
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>{{ user.username }}</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#">settings.</a></li>
+            <li><a class="dropdown-item" href="{% url 'profile' %}">profile.</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">sign out.</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock content %}

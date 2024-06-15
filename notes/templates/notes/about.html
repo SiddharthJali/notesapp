@@ -1,0 +1,17 @@
+{%extends "notes/base.html" %}
+{% block content %}
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <h1 class="text-body-emphasis">about notes.</h1>
+        <p class="col-lg-8 mx-auto fs-5 text-muted">
+            it's a simple note-taking app. whenever you want to take quick notes and you are not having your mobile with
+            you and you are not willing to login to your Apple Notes, Google Notes, Microsoft Notes, or any other Notes.
+            that's why we are introducing you guys to this simple notes webapp. you will just have a username and a
+            password. and then you start taking notes.
+        </p>
+        <div class="d-inline-flex gap-2 mb-5">
+            <a class="btn btn-secondary btn-lg px-4 rounded-pill" href="{% url 'home' %}">get started.</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
